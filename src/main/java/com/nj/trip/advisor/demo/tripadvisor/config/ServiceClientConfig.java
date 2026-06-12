@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 public class ServiceClientConfig {
     private static final Logger LOG = LoggerFactory.getLogger(ServiceClientConfig.class);
 
-    @Value("${spring.thread.virtual.enabled}")
+    @Value("${spring.threads.virtual.enabled}")
     private boolean isVirtualThreadEnabled;
 
     @Bean
