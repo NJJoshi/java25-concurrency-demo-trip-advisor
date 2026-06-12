@@ -59,6 +59,7 @@ public class ServiceClientConfig {
     private RestClient buildRestClient(String baseUrl){
         LOG.info("base url: {}", baseUrl);
         var builder = RestClient.builder().baseUrl(baseUrl);
+        //commenting below code will result into creation of more platform thread rather than virtual thread.
         if(isVirtualThreadEnabled){
             builder = builder.requestFactory(new JdkClientHttpRequestFactory(
                     HttpClient.newBuilder().executor(Executors.newVirtualThreadPerTaskExecutor()).build()
