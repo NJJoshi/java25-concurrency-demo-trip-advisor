@@ -5,11 +5,15 @@ import com.nj.trip.advisor.demo.tripadvisor.dto.TripPlan;
 import com.nj.trip.advisor.demo.tripadvisor.dto.TripReservationRequest;
 import com.nj.trip.advisor.demo.tripadvisor.service.TripPlanService;
 import com.nj.trip.advisor.demo.tripadvisor.service.TripReservationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("trip")
 public class TripController {
+
+    private static final Logger LOG  = LoggerFactory.getLogger(TripController.class);
 
     private final TripPlanService planService;
     private final TripReservationService reservationService;
@@ -21,6 +25,7 @@ public class TripController {
 
     @GetMapping("{airportCode}")
     public TripPlan planTrip(@PathVariable String airportCode){
+        LOG.info("Airport code is {} , Is Virtual : {}", airportCode, Thread.currentThread().isVirtual());
         return this.planService.getTripPlan(airportCode);
     }
 
